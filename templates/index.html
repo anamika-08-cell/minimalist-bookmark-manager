@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Bookmarks</title>
+
+    <style>
+
+        body {
+          font-family: monospace; max-width: 600px; margin: 40px auto; padding: 0 20px; background: #fafafa; color: #333; }
+        form{ display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; }
+        input, textarea, button { padding: 8px; font-family: monospace; border: 1px solid #ccc;}
+        button { background: #000; color: #fff; cursor: pointer; font-weight: bold;}
+        button:hover { background: #333}
+
+        .bookmark-item { background: #fff; border: 1px solid #ddd; padding: 15px; margin-top:15px; border-left: 4px solid #000;}
+        
+    </style>
+
+</head>
+
+<body><h2>Bookmarks & Notes</h2>
+    <p>{{ msg }}</p>
+    <form action="/add" method = "post">
+        <input type="text" name="title" placeholder = "Title (e.g., github repo)" required>
+        <input type ="url" name= "url" placeholder = "URL (https://...)" required>
+        <textarea name="notes" placeholder="Write a 2-linenote here.."></textarea> 
+        <button type="submit">Save Bookmark</button>
+    </form>
+
+    <hr style="margin: 30px 0; border:0; border-top: 1px solid #ccc;"> </hr>
+    
+    {% for bookmark in bookmarks %}
+     <div style="background: #fff; border: 1px solid #ddd; padding: 15px; border-left: 4px solid #000; position:relative;">
+         <form action="/delete/{{ bookmark.id }}" method="post" style="margin: 0; position: absolute; right: 15px;" onsubmit="return confirm;">
+           <button type="submit" style="background: none; color: red; border: none; padding :0 ; cursor: pointer; font-size: 12px;"> Delete </button>
+         </form>
+
+        <strong>
+            <a href="{{ bookmark.url }}" target="_blank" style="color: #000; text-decoration: none; border-bottom: 1px solid #000;">
+                {{ bookmark.title }}
+            </a>
+        </strong>
+        {% if bookmark.notes %}
+           <p style="margin: 8px 0 0 0; color: #666; font-size: 13px; font-style: italic;"> -{{ bookmark.notes }}
+           </p>
+        {% endif %}
+
+     </div>
+    {% endfor %}
+</body>
+</html>  
