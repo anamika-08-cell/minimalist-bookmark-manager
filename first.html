@@ -1,0 +1,519 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NavGurukul | Education for Everyone</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f8fafc;
+            color: #243047;
+            line-height: 1.6;
+        }
+
+        header {
+            background: white;
+            padding: 16px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 2px 10px #00000010;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #164e63;
+        }
+
+        .logo span {
+            color: #f59e0b;
+        }
+
+        nav {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #243047;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #0891b2;
+        }
+
+        .hero {
+            min-height: 460px;
+            padding: 80px 7%;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(120deg, #164e63, #0891b2);
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 680px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 28px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            background: #fbbf24;
+            color: #243047;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #f59e0b;
+        }
+
+        section {
+            padding: 65px 7%;
+            scroll-margin-top: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #164e63;
+        }
+
+        .section-description {
+            max-width: 700px;
+            margin: 0 auto 35px;
+            text-align: center;
+            color: #64748b;
+        }
+
+        .about-content {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #0000000b;
+            border-bottom: 4px solid #0891b2;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card .icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #164e63;
+        }
+
+        .highlight {
+            background: #e6f6fa;
+        }
+
+        .steps {
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 18px;
+            margin: 25px 0;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            min-width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: #164e63;
+            color: white;
+            font-weight: bold;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #0000000b;
+        }
+
+        .contact-container label {
+            display: block;
+            margin: 15px 0 6px;
+            font-weight: bold;
+        }
+
+        .contact-container input,
+        .contact-container select,
+        .contact-container textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .contact-container textarea {
+            resize: vertical;
+        }
+
+        .contact-container button {
+            margin-top: 20px;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        #form-message {
+            margin-top: 15px;
+            color: #0f766e;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #123747;
+            color: white;
+            text-align: center;
+            padding: 28px 7%;
+        }
+
+        footer a {
+            color: #fbbf24;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                justify-content: center;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .hero {
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+
+            section {
+                padding: 45px 6%;
+            }
+
+            .section-title {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <div class="logo">Nav<span>Gurukul</span></div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#programs">Programs</a>
+            <a href="#student-life">Student Life</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Learn Skills. Build Your Future.</h1>
+                <p>
+                    Welcome to NavGurukul, where learners can explore
+                    technology, develop life skills, and work towards
+                    creating new opportunities for themselves.
+                </p>
+                <a href="#programs" class="btn">Explore Programs</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2 class="section-title">About NavGurukul</h2>
+            <p class="section-description">
+                Learning, collaboration, and personal growth.
+            </p>
+
+            <div class="about-content">
+                <p>
+                    NavGurukul is a nonprofit organization that works to
+                    expand access to education and career opportunities.
+                    Its learning approach emphasizes technology,
+                    practical skills, and personal development.
+                </p>
+                <br>
+                <p>
+                    Students can develop problem-solving abilities,
+                    communication skills, teamwork, and confidence
+                    while preparing for future opportunities.
+                </p>
+            </div>
+        </section>
+
+        <!-- Programs Section -->
+        <section class="highlight" id="programs">
+            <h2 class="section-title">Explore Our Learning Areas</h2>
+            <p class="section-description">
+                Build practical skills through learning and practice.
+            </p>
+
+            <div class="cards">
+                <article class="card">
+                    <div class="icon">💻</div>
+                    <h3>Software Development</h3>
+                    <p>
+                        Explore programming, web development,
+                        problem-solving, and software projects.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">🌐</div>
+                    <h3>Web Development</h3>
+                    <p>
+                        Learn how websites work using HTML, CSS,
+                        JavaScript, and other web technologies.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">🗣️</div>
+                    <h3>Communication Skills</h3>
+                    <p>
+                        Practice English communication, presentations,
+                        interviews, and professional writing.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">🌱</div>
+                    <h3>Life Skills</h3>
+                    <p>
+                        Develop teamwork, leadership, critical thinking,
+                        and decision-making skills.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Student Life Section -->
+        <section id="student-life">
+            <h2 class="section-title">Life Beyond the Classroom</h2>
+            <p class="section-description">
+                Learning also happens through everyday experiences.
+            </p>
+
+            <div class="cards">
+                <article class="card">
+                    <div class="icon">🤝</div>
+                    <h3>Teamwork</h3>
+                    <p>
+                        Collaborate with fellow learners,
+                        share ideas, and solve problems together.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">🎯</div>
+                    <h3>Personal Growth</h3>
+                    <p>
+                        Set goals, build good habits, and reflect
+                        on your progress.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">🚀</div>
+                    <h3>Career Preparation</h3>
+                    <p>
+                        Work on projects, develop job-ready skills,
+                        and practice professional communication.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Getting Started Section -->
+        <section class="highlight">
+            <h2 class="section-title">Start Your Learning Journey</h2>
+            <p class="section-description">
+                A simple path towards exploring your opportunities.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <h3>Explore</h3>
+                        <p>Learn about the programs and opportunities available.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <h3>Practice</h3>
+                        <p>Build your skills through regular learning and projects.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <h3>Grow</h3>
+                        <p>Prepare for future education and career opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2 class="section-title">Get in Touch</h2>
+            <p class="section-description">
+                Have a question? Fill in the form below.
+            </p>
+
+            <div class="contact-container">
+                <form id="contact-form">
+                    <label for="name">Full Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                    <label for="email">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                    <label for="interest">Area of Interest</label>
+                    <select id="interest" name="interest" required>
+                        <option value="">Choose a learning area</option>
+                        <option value="Software Development">Software Development</option>
+                        <option value="Web Development">Web Development</option>
+                        <option value="Communication Skills">Communication Skills</option>
+                        <option value="Life Skills">Life Skills</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <label for="message">Your Message</label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="4"
+                        placeholder="Write your question here"
+                        required
+                    ></textarea>
+
+                    <button type="submit" class="btn">
+                        Submit Message
+                    </button>
+
+                    <p id="form-message" role="status" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Learning Today, Creating Opportunities for Tomorrow.</p>
+        <p>
+            Official website:
+            <a href="https://navgurukul.org/"
+               target="_blank"
+               rel="noopener noreferrer">
+                navgurukul.org
+            </a>
+        </p>
+        <p>&copy; 2026 NavGurukul Website Demo</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById("contact-form");
+        const message = document.getElementById("form-message");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            message.textContent =
+                "Thank you! This is a demo form. Your message has not been sent.";
+
+            form.reset();
+        });
+    </script>
+
+</body>
+</html> 
